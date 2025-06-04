@@ -1,15 +1,14 @@
 const db = require("../db");
 
-//Add a comment describing what this function does and what does it return
+// takes all tasks from table in the database
 const getTasks = async () => {
   const res = await db.query(
-    //correct this SQL query to select all tasks from the database
-    "SELECT everything FROM tasks ORDER BY created_at DESC"
+    "SELECT * FROM tasks ORDER BY created_at DESC"
   );
   return res.rows;
 };
 
-//Write a comment describing what this function insersts a new task into the database
+// inserts new task into table with the title,description given
 const addTask = async (title, description) => {
   const res = await db.query(
     "INSERT INTO tasks (title, description, is_complete, created_at) VALUES ($1, $2, false, NOW()) RETURNING *",
